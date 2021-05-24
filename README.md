@@ -8,7 +8,7 @@ To start:
 python3 run.py
 ```
 
-![Checking in progress](https://github.com/trankov/speedtest-statistics/blob/main/readmefiles/terminal1.png?raw=true)
+![Checking in progress](https://github.com/trankov/speedtest-statistics/blob/main/readmefiles/speedtest.gif?raw=true)
 
 Then Speedtest begins to work as so as in web interface or mobile/desktop application, but in terminal.
 
