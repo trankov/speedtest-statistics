@@ -100,8 +100,6 @@ If `speedtest.db` does not exists, it will be created automatically.
 **NB:** Data is intentionally written to one table, no related tables. This is because the most of parameters are potentially variable and may change independently and unpredictable.
 
 ## Well, then?
-There are plenty of ways to use one-table organized data, from GUI clients to frameworks such as Pandas. Even Excel and Google Sheets are applicable.
+There are plenty of ways to use one-table organized data, from [GUI clients](https://yandex.com/search/?text=sqlite%20gui%20clients) to frameworks such as [Pandas](https://pandas.pydata.org). Even [MS Excel](https://www.microsoft.com/ru-ru/microsoft-365/excel) or [Google Sheets](https://sheets.google.com) are applicable.
 
-Use Notebook for analyse and plot data or connect it to Tableu for constructing reports.
-
-Author don't planning to reinvent BI tools or Pivot tables.
+Use [Notebook](https://jupyter.org/) for analyse and plot data. Or connect the database to [Tableu](https://www.tableau.com/) for constructing reports. Author don't planning to reinvent BI tools or instruments for Pivot tables. The ready ones are perfect, necessary and sufficient
