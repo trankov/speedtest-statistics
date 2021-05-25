@@ -1,4 +1,3 @@
-# import sys
 import random
 import json
 import os
@@ -224,10 +223,9 @@ def save_statistics(stats: dict, best: bool, dbname: str = 'speedtest.db') -> bo
     )
     cur.execute(sql_request, update_values)
 
-    # cur.execute('''INSERT INTO sessions (best, download, upload, ping, url, test_lat, test_lon, test_name, test_country, test_cc, sponsor, test_id, test_host, d, latency, timestamp, bytes_sent, bytes_received, client_ip, client_lat, client_lon, client_isp, client_country, ip_remote, ip_local, name_remote, name_local, city, region, country, timezone, public_ip_lat, public_ip_lon, organization, postal, vendor, oui_hex, oui_base16, vendor_address, mac_address, unixtime) VALUES (:best, :download, :upload, :ping, :url, :test_lat, :test_lon, :test_name, :test_country, :test_cc, :sponsor, :test_id, :test_host, :d, :latency, :timestamp, :bytes_sent, :bytes_received, :client_ip, :client_lat, :client_lon, :client_isp, :client_country, :ip_remote, :ip_local, :name_remote, :name_local, :city, :region, :country, :timezone, :public_ip_lat, :public_ip_lon, :organization, :postal, :vendor, :oui_hex, :oui_base16, :vendor_address, :mac_address, :unixtime)''', update_values)
-
     con.commit()
     con.close()
+
 
 class ProgressLine(object):
     '''Controls progress bar for multitreading requests'''
@@ -280,6 +278,7 @@ class ProgressLine(object):
 
     def __repr__(self):
         return ''.join(self._line)
+
 
 def print_res(results: dict):
     '''Puts out formatted report about the speed test'''
@@ -362,9 +361,10 @@ if __name__ == '__main__':
     print_res(res_rand)
 
     print('Save statistics...')
-    save_statistics(stats=res_best, best=True, dbname='test.db')
-    save_statistics(stats=res_rand, best=False, dbname='test.db')
+    save_statistics(stats=res_best, best=True)
+    save_statistics(stats=res_rand, best=False)
     print('Statistics saved.')
+    
     print('_'*65)
 
 # END
