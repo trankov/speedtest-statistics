@@ -1,5 +1,5 @@
 # speedtest-statistics
-A CLI and SQLite3 based Python utility that checks your Internet connection speed via [Speedtest.net](https://speedtest.net), then saves information to database for further analysis. Also keeps some info about your hardware and local network.
+A Command-line interface utility that checks your Internet connection speed via [Speedtest.net](https://speedtest.net), while shows coloured process and testing report. Usefull for ssh administration or automated speed monitoring. The utility saves information to SQLite3 database for further analysis. Also keeps some info about your hardware and local network. Written in Python.
 
 ## How does it work
 To start:
