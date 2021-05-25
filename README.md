@@ -35,6 +35,8 @@ All code exept of official [Speedtest](https://speedtest.net) `speedtest-cli` mo
 
 Use `pip install speedtest-cli` or other methods as described in [official repository](https://github.com/sivel/speedtest-cli).
 
+Library version used: `speedtest-cli==2.1.3`
+
 ## Database issues
 The utility uses two different databases.
 
