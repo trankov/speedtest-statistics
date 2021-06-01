@@ -10,7 +10,7 @@ python3 run.py
 
 ![Checking in progress](https://github.com/trankov/speedtest-statistics/blob/main/readmefiles/speedtest.gif?raw=true)
 
-Then Speedtest begins to work as so as in web interface or mobile/desktop application, but in terminal.
+It works similar to web or applications interface, but in terminal. Progress bar shows planned requests as red, current requests as yellow and finished requests as green. The progress bars are not hystograms! For evaluation use report below the progress bars.
 
 The utility uses double check for greater clarity.
 
@@ -19,37 +19,38 @@ The utility uses double check for greater clarity.
 
 These two sessions have a different boolean mark in the database for later convinience.
 
-After both checks completed, it shows general info, then store huge information in the database. Actually it keeps 41 parameter for every session (one check consists of two sessions, a «best» one and a «random» one).
+Example of full report:
 
 ![Checking complete](https://github.com/trankov/speedtest-statistics/blob/main/readmefiles/terminal2.png?raw=true)
 
 ## Preliminary warnings
 1. No Python 2 supported. Let dead bury their own dead.
-2. Several parts of statistics scraping from third-party websites. Author cannot guarantee they always be available.
-3. The status of the project is :toilet: **work-in-progress**. There is no _alfa_, _beta_ or any other release level. Nevertheless on this fact, you are free to fork it for manual improvement or use as you want — at your own risk, as is.
-4. Author well realise that code have to be refactored and tested.
+2. Several parts of statistics scraping from third-party websites. Report me if something wrong, and I'll fix it.
+3. Rolling deployment model. No _alfa_, _beta_ or any other release level.
 
 ## Requirements
 
-All code exept of official [Speedtest](https://speedtest.net) `speedtest-cli` module works under Python Standard Library (stdlib).
+All code exept of official [Speedtest](https://speedtest.net) `speedtest-cli` module works under Python Standard Library (stdlib) and don't need other additional setup.
 
-Use `pip install speedtest-cli` or other methods as described in [official repository](https://github.com/sivel/speedtest-cli).
+Install the library before usage:
+```sh
+pip install speedtest-cli==2.1.3
+```
+Other methods described in [official repository](https://github.com/sivel/speedtest-cli).
 
-Library version used: `speedtest-cli==2.1.3`
 
-## Database issues
-The utility uses two different databases.
+## Database and check logs
+Actaully utility uses two different databases, but you need only one of them.
 
-**The first one** is nessesary for fast searching of your network hardware manufacturer, using [IEEE OUI](https://en.wikipedia.org/wiki/Organizationally_unique_identifier). You'll find it in `oui.db` file.
+**The first one** is nessesary for fast searching of your network hardware manufacturer, using [IEEE OUI](https://en.wikipedia.org/wiki/Organizationally_unique_identifier). This is `oui.db` file.
 
-Use the `download.py` script for maintaining OUI Database if you want to update vendor's list or if you lost this file for any cause.
-
+If you got ultimate brand new hardware not presented in local list, you may use the `download.py` script. It will update vendor's list from IEEE website. Or, if you lost this file for any cause, this script will create a new one with latest updates.
 ```shell
 python3 download.py
 ```
-This command automatically download last version of [OUI IEEE list](http://standards-oui.ieee.org) from the Web and place items into database. If database file does not exists, it will be created.
 
-**The second one** stores full information about speed-checking sessions. It contains 41 parameter for each check.
+
+**The second one**, named `speedtest.db`, stores full information about speed-checking sessions. It contains 41 parameter for each check.
 ```python
  best: bool             # whether test server best (True) or random (False)
  download: float        # download speed
@@ -97,9 +98,9 @@ Every checking session (everytime you run the utility) consists of two checks an
 
 If `speedtest.db` does not exists, it will be created automatically.
 
-**NB:** Data is intentionally written to one table, no related tables. This is because the most of parameters are potentially variable and may change independently and unpredictable.
+**NB:** Data is intentionally stores in the single table, not several related tables. This is because the most of values are potentially variable and may changing independently and unpredictable. Also this approach is common for most analysis tools.
 
 ## Well, then?
-There are plenty of ways to use one-table organized data, from [GUI clients](https://yandex.com/search/?text=sqlite%20gui%20clients) to frameworks such as [Pandas](https://pandas.pydata.org). Even [MS Excel](https://www.microsoft.com/ru-ru/microsoft-365/excel) or [Google Sheets](https://sheets.google.com) are applicable.
+There are plenty of ways to use one-table organized data. It could be [GUI clients](https://yandex.com/search/?text=sqlite%20gui%20clients) or programmatic solutions such as [Pandas](https://pandas.pydata.org) or [R Studio](https://www.r-studio.com/). And even [MS Excel](https://www.microsoft.com/ru-ru/microsoft-365/excel) or [Google Sheets](https://sheets.google.com) are applicable.
 
-Use [Notebook](https://jupyter.org/) for analyse and plot data. Or connect the database to [Tableu](https://www.tableau.com/) for constructing reports. Author don't planning to reinvent BI tools or instruments for Pivot tables. The ready ones are perfect, necessary and sufficient
+Use [Notebook](https://jupyter.org/) for analyse and plot data. Or connect the database to [BI interface](https://yandex.com/search/?text=Top%20BI%20tools) for constructing reports. Author don't planning to reinvent BI tools. The ready ones are perfect, necessary and sufficient. Free or paid, for any choice.
